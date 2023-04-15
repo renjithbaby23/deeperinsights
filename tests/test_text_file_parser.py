@@ -1,11 +1,11 @@
-"""Test for text fileparser."""
+"""Test for text file_parser."""
 
 import os
 import tempfile
 
 import pytest
 
-from fileparser.textfileparser import TextFileParser
+from file_parser.textfile_parser import TextFileParser
 
 
 class TestTextFileParser:

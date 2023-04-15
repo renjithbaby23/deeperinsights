@@ -1,10 +1,10 @@
 """Text file parser."""
 import logging
 
-from fileparser import FileParser
+from file_parser import FileParser
 from utils.configure_logger import configure_logger
 
-configure_logger(level=logging.DEBUG)
+configure_logger()
 logger = logging.getLogger(__name__)
 
 
@@ -45,4 +45,4 @@ class TextFileParser(FileParser):
         self._extract_source_and_search_term(source_text)
 
         logger.debug(f"The source text is: \n{self.source_text}\n")
-        logger.info(f"The search term: '{self.search_term}'")
+        logger.debug(f"The search term: '{self.search_term}'")

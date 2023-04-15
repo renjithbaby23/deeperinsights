@@ -5,7 +5,7 @@ from pathlib import Path
 
 from utils.configure_logger import configure_logger
 
-configure_logger(level=logging.DEBUG)
+configure_logger()
 logger = logging.getLogger(__name__)
 
 
@@ -17,15 +17,16 @@ class FileParser(ABC):
         self.file_path: Path = Path(file_path)
         self.source_text: list = list()
         self.search_term: str = ""
+        self._validate_path()
 
     def _validate_path(self) -> None:
         """Check if the path given is valid."""
         if self.file_path.is_file():
-            logger.info(f"File '{self.file_path}' is a valid file.")
+            logger.debug(f"File '{self.file_path}' is a valid file.")
             return
         else:
             error = f"File '{self.file_path}' doesn't exist!"
-            logger.warning(error)
+            logger.error(error)
             raise FileNotFoundError(error)
 
     @abstractmethod
@@ -35,6 +36,5 @@ class FileParser(ABC):
 
     def __call__(self):
         """Do the file parsing."""
-        self._validate_path()
         self.read_and_parse()
         return self.source_text, self.search_term

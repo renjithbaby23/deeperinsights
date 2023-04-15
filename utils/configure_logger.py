@@ -9,7 +9,7 @@ from utils.utils import get_abs_path
 
 
 def configure_logger(
-    log_path: Optional[Path] = None, level=logging.INFO
+    log_path: Optional[Path] = None, level=logging.WARNING
 ) -> None:
     """Configure the logging."""
     if log_path is None:
