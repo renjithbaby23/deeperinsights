@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "deeperinsights"
+name = "solution"
 version = "0.1.0"
 description = "solution for deeperinsights assignment"
 authors = ["Renjith <renjithbaby23@gmail.com>"]
