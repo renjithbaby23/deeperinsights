@@ -3,7 +3,7 @@ import logging
 from abc import ABC, abstractmethod
 from pathlib import Path
 
-from utils.configure_logger import configure_logger
+from solution.utils.configure_logger import configure_logger
 
 configure_logger()
 logger = logging.getLogger(__name__)

@@ -3,8 +3,8 @@
 import logging
 from typing import List
 
-from content_formatter import ContentFormatter
-from utils.configure_logger import configure_logger
+from solution.content_formatter import ContentFormatter
+from solution.utils.configure_logger import configure_logger
 
 configure_logger()
 logger = logging.getLogger(__name__)

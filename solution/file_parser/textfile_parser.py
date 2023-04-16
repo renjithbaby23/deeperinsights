@@ -1,8 +1,8 @@
 """Text file parser."""
 import logging
 
-from file_parser import FileParser
-from utils.configure_logger import configure_logger
+from solution.file_parser import FileParser
+from solution.utils.configure_logger import configure_logger
 
 configure_logger()
 logger = logging.getLogger(__name__)

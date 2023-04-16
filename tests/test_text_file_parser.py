@@ -5,7 +5,7 @@ import tempfile
 
 import pytest
 
-from file_parser.textfile_parser import TextFileParser
+from solution.file_parser.textfile_parser import TextFileParser
 
 
 class TestTextFileParser:

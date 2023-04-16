@@ -5,7 +5,7 @@ import tempfile
 
 import pytest
 
-from file_parser import FileParser
+from solution.file_parser import FileParser
 
 
 class ConcreteFileParser(FileParser):

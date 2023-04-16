@@ -2,24 +2,28 @@
 
 import argparse
 import logging
+import os.path
+from pathlib import Path
 
-import pattern_matcher as pm
-from content_formatter.textfile_formatter import TextContentFormatter
-from file_parser.textfile_parser import TextFileParser
-from utils.configure_logger import configure_logger
-from utils.utils import get_abs_path
+import solution.pattern_matcher as pm
+from solution.content_formatter.textfile_formatter import TextContentFormatter
+from solution.file_parser.textfile_parser import TextFileParser
+from solution.utils.configure_logger import configure_logger
 
 configure_logger(level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
 
-if __name__ == "__main__":
+def main():
+    """Deeperinsights solution main."""
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument("filepath", help="Input text file path", type=str)
 
     args = arg_parser.parse_args()
-    # args.filepath = "sample4.txt"
-    args.filepath = get_abs_path(args.filepath, __file__)
+    # args.filepath = "../sample4.txt"
+    # print(os.path.abspath(args.filepath))
+    print(Path(args.filepath).absolute())
+    args.filepath = os.path.abspath(Path(args.filepath).absolute())
 
     # parse the file
     file_parser = TextFileParser(args.filepath)
@@ -32,3 +36,7 @@ if __name__ == "__main__":
     # get and print the matching lines
     idx_list = pm.get_matching_lines(formatted_source_text, search_term)
     pm.print_matching_lines(formatted_source_text, idx_list)
+
+
+if __name__ == "__main__":
+    main()

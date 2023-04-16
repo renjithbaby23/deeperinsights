@@ -5,7 +5,7 @@ from logging.handlers import TimedRotatingFileHandler
 from pathlib import Path
 from typing import Optional
 
-from utils.utils import get_abs_path
+from solution.utils.utils import get_abs_path
 
 
 def configure_logger(

@@ -2,7 +2,7 @@
 
 import pytest
 
-from content_formatter.textfile_formatter import TextContentFormatter
+from solution.content_formatter.textfile_formatter import TextContentFormatter
 
 
 class TestTextContentFormatter:
