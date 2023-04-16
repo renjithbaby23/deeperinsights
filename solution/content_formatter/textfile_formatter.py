@@ -20,15 +20,16 @@ class TextContentFormatter(ContentFormatter):
        ["abc", "abc def", "", "abc"]
     """
 
-    def __init__(self):
+    def __init__(self, word_length: int = 3):
         """Init for the abstract class."""
         super().__init__()
         self.accepted_chars = (
             "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         )
+        self.word_length = word_length
 
     @staticmethod
-    def _validate_data(input_data: List[str]) -> None:
+    def _validate_input_data(input_data: List[str]) -> None:
         """Check if the given data is valid."""
         if isinstance(input_data, list) and all(
             isinstance(item, str) for item in input_data
@@ -39,6 +40,13 @@ class TextContentFormatter(ContentFormatter):
             error = "Source data received is not list of strings!"
             logger.error(error)
             raise ValueError(error)
+
+    def _validate_word_count(self, words: List[str]):
+        error = (
+            f"Expecting word length of {self.word_length} per entry; "
+            f"Instead, received {len(words)}"
+        )
+        assert len(words) == self.word_length, error
 
     def _format_text(self, text: str) -> str:
         """Format the given text to text with only alphabets."""
@@ -58,6 +66,8 @@ class TextContentFormatter(ContentFormatter):
         if current_word:
             words.append(current_word)
 
+        self._validate_word_count(words)
+
         # Join the words into a single string with spaces between them
         formatted_text = " ".join(words)
 
@@ -65,6 +75,6 @@ class TextContentFormatter(ContentFormatter):
 
     def format(self, input_data: List[str]) -> List[str]:
         """Format the input list of texts."""
-        self._validate_data(input_data)
+        self._validate_input_data(input_data)
         formatted_data = [self._format_text(item) for item in input_data]
         return formatted_data

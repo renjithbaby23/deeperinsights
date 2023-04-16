@@ -12,18 +12,15 @@ def test_solution(capsys):
     """Integration test for solution."""
     # Create a temporary file with some text
     with tempfile.NamedTemporaryFile(delete=False) as tmpfile:
-        tmpfile.write(b"This is some sample text.\n")
-        tmpfile.write(b"Another line of text.\n")
-        tmpfile.write(b"This line contains the pattern.\n")
-        tmpfile.write(b"Yet another line of text with patt ern.\n")
-        tmpfile.write(b"123And one456more line&^% of text.\n")
-        tmpfile.write(b"1@This #$line also4$contains! the 1#pattern#@.\n")
+        tmpfile.write(b"This is one.\n")
+        tmpfile.write(b"123@Another @#@line_   _text...\n")
+        tmpfile.write(b"%^line with) pattern!!\n")
+        tmpfile.write(b"another123 patt# ern.22\n")
+        tmpfile.write(b"123And 456last test&^%\n")
+        tmpfile.write(b"  1@Also4$contains!  1#pattern#@  \n")
         tmpfile.write(b"pattern\n")
 
-    expected_output = (
-        "[This line contains the pattern]\n"
-        "[This line also contains the pattern]\n"
-    )
+    expected_output = "[line with pattern]\n" "[Also contains pattern]\n"
 
     # Parse the temporary file
     file_parser = TextFileParser(tmpfile.name)

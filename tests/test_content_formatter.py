@@ -17,10 +17,10 @@ class TestTextContentFormatter:
         "input_data, expected_output",
         [
             (
-                ["This is 123  a  ", "123Sample*7567", " test123."],
-                ["This is a", "Sample", "test"],
+                ["123a123Sample*7567_test123."],
+                ["a Sample test"],
             ),
-            ([" this is  123another", "test"], ["this is another", "test"]),
+            ([" this 12@is34  123another"], ["this is another"]),
         ],
     )
     def test_format_with_valid_data(

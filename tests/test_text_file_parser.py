@@ -24,10 +24,28 @@ class TestTextFileParser:
         """Teardown."""
         os.unlink(self.tmp_file.name)
 
-    def test_read_and_parse(self):
+    @pytest.mark.parametrize(
+        "content, expected_result",
+        [
+            (
+                b"Sample123Entry   _here212!\n\nsearchterm",
+                (["Sample123Entry   _here212!"], "searchterm"),
+            ),
+            (
+                b"Sample123Entry_here212!\n"
+                b"Another123Entry   _here212!\n\nsearchterm",
+                (
+                    [
+                        "Sample123Entry_here212!",
+                        "Another123Entry" "   _here212!",
+                    ],
+                    "searchterm",
+                ),
+            ),
+        ],
+    )
+    def test_read_and_parse(self, content, expected_result):
         """Read and parse on a valid entry."""
-        content = b"Sample123\nEntry here212!\n\nsearchterm"
-        expected_result = (["Sample123", "Entry here212!"], "searchterm")
         self.write_to_temp_file(content)
 
         fp = TextFileParser(self.tmp_file.name)
@@ -35,10 +53,25 @@ class TestTextFileParser:
         assert fp.source_text == expected_result[0]
         assert fp.search_term == expected_result[1]
 
-    def test_call(self):
+    @pytest.mark.parametrize(
+        "content, expected_result",
+        [
+            (
+                b"Sample123Entry   _here212!\n\nsearchterm",
+                (["Sample123Entry   _here212!"], "searchterm"),
+            ),
+            (
+                b"Sample123Entry_here212!\n"
+                b"Another123Entry   _here212!\n\nsearchterm",
+                (
+                    ["Sample123Entry_here212!", "Another123Entry   _here212!"],
+                    "searchterm",
+                ),
+            ),
+        ],
+    )
+    def test_call(self, content, expected_result):
         """Test the class call function on a valid entry."""
-        content = b"Sample123\nEntry here212!\n\nsearchterm"
-        expected_result = (["Sample123", "Entry here212!"], "searchterm")
         self.write_to_temp_file(content)
 
         fp = TextFileParser(self.tmp_file.name)

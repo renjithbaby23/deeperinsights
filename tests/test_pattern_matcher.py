@@ -45,7 +45,8 @@ def test_get_matching_lines(source_text):
     assert get_matching_lines(source_text, "third") == [2]
     assert get_matching_lines(source_text, "foo") == []
     assert get_matching_lines([], "test") == []
-    assert get_matching_lines(source_text, "") == [0, 1, 2]
+    with pytest.raises(ValueError):
+        get_matching_lines(source_text, "")
 
 
 def test_print_matching_line(capsys):
