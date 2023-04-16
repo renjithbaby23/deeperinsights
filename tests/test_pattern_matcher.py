@@ -59,7 +59,5 @@ def test_print_matching_lines(source_text, capsys):
     """Test print output lines using pytest builtin fixture 'capsys'."""
     print_matching_lines(source_text, [0, 2])
     captured = capsys.readouterr()
-    assert (
-        captured.out
-        == "[This is a test string.]\n[This is a third test string.]\n"
-    )
+    expected_out = "[This is a test string.]\n[This is a third test string.]\n"
+    assert captured.out == expected_out

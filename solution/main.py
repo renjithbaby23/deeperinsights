@@ -20,9 +20,6 @@ def main():
     arg_parser.add_argument("filepath", help="Input text file path", type=str)
 
     args = arg_parser.parse_args()
-    # args.filepath = "../sample4.txt"
-    # print(os.path.abspath(args.filepath))
-    print(Path(args.filepath).absolute())
     args.filepath = os.path.abspath(Path(args.filepath).absolute())
 
     # parse the file
