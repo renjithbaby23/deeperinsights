@@ -12,16 +12,20 @@ class TextFileParser(FileParser):
     """Concrete implementation of text file parser."""
 
     def __init__(self, file_path: str):
-        """Init."""
+        """Init.
+
+        Args:
+            file_path: path to the input text file
+        """
         super().__init__(file_path)
 
-    def _extract_source_and_search_term(self, file_content: list):
+    def _extract_source_and_search_term(self, file_content: list) -> None:
         """Extract source and search terms."""
         # search term is the last non-empty entry in the file
         self.search_term = file_content.pop()
         self.source_text = file_content
 
-    def _check_sanity(self, source_text):
+    def _check_sanity(self, source_text) -> None:
         """Check the file contents for sanity."""
         if len(source_text) == 0:
             error = (

@@ -14,8 +14,8 @@ configure_logger(level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
 
-def main():
-    """Deeperinsights solution main."""
+def main() -> None:
+    """Deeperinsights solution main entry point."""
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument("filepath", help="Input text file path", type=str)
 

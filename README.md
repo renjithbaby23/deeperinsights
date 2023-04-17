@@ -13,14 +13,45 @@ Solution for deeper insights assignment.
 5. Exactly three words are expected per line of the input source text; else, exceptions will be raised
 6. Expecting the whole text file size to be small enough to fit into the memory
 
+### Solution:
+The solution is built with mainly three components;
+1. file parser
+2. content formatter
+3. pattern matcher
 
-### How to install
+
+#### file parser
+The `TextFileParser` class which is derived from the `FileParser` abstract class
+is responsible for parsing the input file and ensuring it is a valid file.
+The parsing process includes opening and reading the file contents and
+extracting `source_text` and `search_term`. It raises `FileNotFoundError`
+if the file is not found. It also raises `ValueError` if it doesn't contain any `source_text` and `search_term`
+
+
+#### content formatter
+`TextContentFormatter` class which is derived from `ContentFormatter` is
+the abstraction for formatting and filtering out the words from the `source_text`.
+It ensures the assumptions are met before formatting and ensures exactly three words
+are present there in each line of the `source_text`.
+
+
+#### pattern matcher
+The pattern matcher module takes care of the
+pattern matching and prints matching line in the expected format and order.
+
+
+### How to install the solution package?
 1. Requirements:
    1. python 3.8 or higher
    2. [poetry](https://python-poetry.org/docs/)
 2. Unzip the DeeperInsights.zip file provided
 3. Enter the unzipped directory ```cd DeeperInsights```
-4. Use poetry to build the solution ```poetry build```
-5. The installable .whl file will be available in ```DeeperInsights/dist/solution-0.1.0-py3-none-any.whl```
-6. Install the whl file using pip in the python 3.8 virtual environment ```pip install dist/solution-0.1.0-py3-none-any.whl```
-7. Now you can run ```solution <path_to_text_file.txt>``` to run the solution
+4. Run ```poetry install``` to install the dependencies
+5. Use poetry to build the solution by running ```poetry build```
+6. The installable `.whl` file will be available here ```DeeperInsights/dist/solution-0.1.0-py3-none-any.whl```
+7. Install the whl file using pip (in a python 3.8 virtual environment)
+```pip install dist/solution-0.1.0-py3-none-any.whl```
+8. Now you can run ```solution <path_to_text_file.txt>``` to execute the solution
+
+*Note: The solution libray is not hosted publicly anywhere in github or similar code hosting platforms.
+But I used a personal git repository to make the development process easier.*
