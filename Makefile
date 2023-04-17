@@ -2,9 +2,15 @@
 .EXPORT_ALL_VARIABLES:
 
 install:
-	@echo "Installing..."
+	@echo "setting up virtual environment..."
 	poetry install
 	poetry run pre-commit install
+
+	@echo "building solution package..."
+	poetry build
+
+	@echo "installing the solution package..."
+	pip install dist/solution-0.1.0-py3-none-any.whl --force-reinstall
 
 activate:
 	@echo "Activating virtual environment"

@@ -55,12 +55,18 @@ flake8, black, mypy etc via pre-commit hooks.
    2. [poetry](https://python-poetry.org/docs/)
 2. Unzip the DeeperInsights.zip file provided
 3. Enter the unzipped directory ```cd DeeperInsights```
-4. Run ```poetry install``` to install the dependencies
-5. Use poetry to build the solution by running ```poetry build```
-6. The installable `.whl` file will be available here ```DeeperInsights/dist/solution-0.1.0-py3-none-any.whl```
-7. Install the whl file using pip (in a python 3.8 virtual environment)
-```pip install dist/solution-0.1.0-py3-none-any.whl```
-8. Now you can run ```solution <path_to_text_file.txt>``` to execute the solution
+4. Run ```make install``` to build and install the solution package
+
+   *Note: If the make install fails int the first attempt, try running it one more time before manually installing the package using the following commands.*
+
+
+   The `make install` command is equivalent to the following commands running one after the other;
+   * Run ```poetry install``` to install the dependencies
+   * Use poetry to build the solution by running ```poetry build```
+   * The installable `.whl` file will be available here ```DeeperInsights/dist/solution-0.1.0-py3-none-any.whl```
+   * Install the whl file using pip (in a python 3.8 virtual environment)
+   ```pip install dist/solution-0.1.0-py3-none-any.whl```
+6. Now you can run ```solution <path_to_text_file.txt>``` to execute the solution
 
 *Note: The solution libray is not hosted publicly anywhere in github or similar code hosting platforms.
 But I used a personal git repository to make the development process easier.*
