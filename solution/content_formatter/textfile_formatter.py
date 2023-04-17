@@ -21,7 +21,12 @@ class TextContentFormatter(ContentFormatter):
     """
 
     def __init__(self, word_length: int = 3):
-        """Init for the abstract class."""
+        """Init for the abstract class.
+
+        Args:
+            word_length: exact number of words expected per one line of text
+
+        """
         super().__init__()
         self.accepted_chars = (
             "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -29,13 +34,23 @@ class TextContentFormatter(ContentFormatter):
         self.word_length = word_length
 
     def _validate_input_data(self, input_data: List[str]) -> None:
-        """Check if the given data is valid."""
+        """Check if the given data is valid.
+
+        Args:
+            input_data: list of input data lines
+
+        Returns:
+            object:
+        """
         if isinstance(input_data, list) and all(
             isinstance(item, str) for item in input_data
         ):
             logger.debug(f"Source text is valid with length {len(input_data)}")
         else:
-            error = "Source data received is not list of strings!"
+            error = (
+                "Source data received is invalid. "
+                "Expecting list of strings!"
+            )
             logger.error(error)
             raise ValueError(error)
 
@@ -49,7 +64,7 @@ class TextContentFormatter(ContentFormatter):
             logger.error(error)
             raise ValueError(error)
 
-    def _validate_word_count(self, words: List[str]):
+    def _validate_word_count(self, words: List[str]) -> None:
         error = (
             f"Expecting word length of {self.word_length} per entry; "
             f"Instead, received {len(words)}"
@@ -82,7 +97,14 @@ class TextContentFormatter(ContentFormatter):
         return formatted_text
 
     def format(self, input_data: List[str]) -> List[str]:
-        """Format the input list of texts."""
+        """Format the input list of texts.
+
+        Args:
+            input_data: list of input data lines
+
+        Returns:
+            object: list of formatted lines of texts
+        """
         self._validate_input_data(input_data)
         formatted_data = [self._format_text(item) for item in input_data]
         return formatted_data

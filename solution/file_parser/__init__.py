@@ -25,7 +25,7 @@ class FileParser(ABC):
             logger.debug(f"File '{self.file_path}' is a valid file.")
             return
         else:
-            error = f"File '{self.file_path}' doesn't exist!"
+            error = f"Invalid path! File '{self.file_path}' doesn't exist!"
             logger.error(error)
             raise FileNotFoundError(error)
 

@@ -12,23 +12,34 @@ class TextFileParser(FileParser):
     """Concrete implementation of text file parser."""
 
     def __init__(self, file_path: str):
-        """Init."""
+        """Init.
+
+        Args:
+            file_path: path to the input text file
+        """
         super().__init__(file_path)
 
-    def _extract_source_and_search_term(self, file_content: list):
+    def _extract_source_and_search_term(self, file_content: list) -> None:
         """Extract source and search terms."""
         # search term is the last non-empty entry in the file
         self.search_term = file_content.pop()
         self.source_text = file_content
 
-    def _check_sanity(self, source_text):
+    def _check_sanity(self, source_text) -> None:
         """Check the file contents for sanity."""
         if len(source_text) == 0:
-            error = f"Empty file - {self.file_path}"
+            error = (
+                f"Empty file - {self.file_path}! "
+                f"Please provide valid file."
+            )
             logger.error(error)
             raise ValueError(error)
         elif len(source_text) == 1:
-            error = f"No content found - {self.file_path}"
+            error = (
+                f"File with only one line - {self.file_path}!"
+                f"Expecting at least one line for source_text "
+                f"and another line for search term."
+            )
             logger.error(error)
             raise ValueError(error)
 
