@@ -1,5 +1,6 @@
 """Text file parser."""
 import logging
+from typing import List
 
 from solution.file_parser import FileParser
 from solution.utils.configure_logger import configure_logger
@@ -12,7 +13,7 @@ class TextFileParser(FileParser):
     """Concrete implementation of text file parser."""
 
     def __init__(self, file_path: str):
-        """Init.
+        """Initialisation of TextFileParser.
 
         Args:
             file_path: path to the input text file
@@ -25,7 +26,7 @@ class TextFileParser(FileParser):
         self.search_term = file_content.pop()
         self.source_text = file_content
 
-    def _check_sanity(self, source_text) -> None:
+    def _check_sanity(self, source_text: List[str]) -> None:
         """Check the file contents for sanity."""
         if len(source_text) == 0:
             error = (
