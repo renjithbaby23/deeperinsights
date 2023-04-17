@@ -25,7 +25,6 @@ class TextContentFormatter(ContentFormatter):
 
         Args:
             word_length: exact number of words expected per one line of text
-
         """
         super().__init__()
         self.accepted_chars = (
