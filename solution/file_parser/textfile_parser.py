@@ -44,10 +44,22 @@ class TextFileParser(FileParser):
             raise ValueError(error)
 
     def read_and_parse(self) -> None:
-        """Implementation of read and parse."""
-        with open(self.file_path, "r") as file:
-            source_text = file.readlines()
-            source_text = [line.strip() for line in source_text]
+        """Implementation of read and parse.
+
+        Raises:
+            IsADirectoryError
+        """
+        try:
+            with open(self.file_path, "r") as file:
+                source_text = file.readlines()
+                source_text = [line.strip() for line in source_text]
+        except IOError:
+            error = (
+                f"File - '{self.file_path}' is not readable! "
+                f"Please provide a valid file."
+            )
+            logger.error(error)
+            raise IOError(error)
 
         self._check_sanity(source_text)
 

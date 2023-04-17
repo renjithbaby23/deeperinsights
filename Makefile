@@ -12,6 +12,11 @@ install:
 	@echo "installing the solution package..."
 	pip install dist/solution-0.1.0-py3-none-any.whl --force-reinstall
 
+dev_install:
+	@echo "Installing..."
+	poetry install
+	poetry run pre-commit install
+
 activate:
 	@echo "Activating virtual environment"
 	poetry shell
@@ -36,6 +41,11 @@ docs_save:
 	pdoc src -o docs
 
 pre_commit:
+	@echo Running pre-commit run --all-files...
+	pre-commit run --all-files
+
+format:
+	@echo Formatting all files in git staging area:
 	@echo Running pre-commit run --all-files...
 	pre-commit run --all-files
 

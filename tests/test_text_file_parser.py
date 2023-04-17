@@ -11,11 +11,6 @@ from solution.file_parser.textfile_parser import TextFileParser
 class TestTextFileParser:
     """Tests for TextFileParser class."""
 
-    def write_to_temp_file(self, content):
-        """Utility function to write to temporary file."""
-        self.tmp_file.write(content)
-        self.tmp_file.close()
-
     def setup_method(self):
         """Setup."""
         self.tmp_file = tempfile.NamedTemporaryFile(delete=False)
@@ -23,6 +18,11 @@ class TestTextFileParser:
     def teardown_method(self):
         """Teardown."""
         os.unlink(self.tmp_file.name)
+
+    def write_to_temp_file(self, content):
+        """Utility function to write to temporary file."""
+        self.tmp_file.write(content)
+        self.tmp_file.close()
 
     @pytest.mark.parametrize(
         "content, expected_result",
