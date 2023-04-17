@@ -37,9 +37,6 @@ class TextContentFormatter(ContentFormatter):
 
         Args:
             input_data: list of input data lines
-
-        Returns:
-            object:
         """
         if isinstance(input_data, list) and all(
             isinstance(item, str) for item in input_data
@@ -56,7 +53,7 @@ class TextContentFormatter(ContentFormatter):
         # check if the line meets minimum word condition
         if any(len(item) < (self.word_length * 2 - 1) for item in input_data):
             error = (
-                f"Expecting minimum {self.word_length} words "
+                f"Expecting exactly {self.word_length} words "
                 f"in each line. But input file has entries that "
                 f"doesn't meet the condition!"
             )

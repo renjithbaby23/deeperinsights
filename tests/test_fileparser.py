@@ -37,11 +37,25 @@ class TestFileParser:
         file_parser = ConcreteFileParser(self.tmp_file.name)
         assert file_parser._validate_path() is None
 
-    def test_invalid_file(self):
+    def test_invalid_path_non_existent(self):
         """Test with an invalid file."""
         with pytest.raises(FileNotFoundError):
-            file_parser = ConcreteFileParser("invalid_file.txt")
-            file_parser._validate_path()
+            _ = ConcreteFileParser("invalid_file.txt")
+
+    def test_invalid_file_with_no_permission(self, tmpdir):
+        no_permission_file = tmpdir.join("no_permissions.txt")
+        no_permission_file.write("test")
+        os.chmod(str(no_permission_file), 0o000)
+
+        with pytest.raises(PermissionError):
+            _ = ConcreteFileParser(no_permission_file)
+
+        os.unlink(no_permission_file)
+
+    def test_validate_path_with_dir(self):
+        """Test with an invalid file."""
+        with pytest.raises(IsADirectoryError):
+            _ = ConcreteFileParser("./")
 
     def test_call(self):
         """Test call method."""

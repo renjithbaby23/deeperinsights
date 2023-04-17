@@ -23,30 +23,33 @@ The solution is built with mainly three components;
 #### file parser
 The `TextFileParser` class which is derived from the `FileParser` abstract class
 is responsible for parsing the input file and ensuring it is a valid file.
-The parsing process includes opening and reading the file contents and
-extracting `source_text` and `search_term`. It raises `FileNotFoundError`
-if the file is not found. It also raises `ValueError` if it doesn't contain any `source_text` and `search_term`
+The parsing process includes ensuring the input is a valid accessible file,
+opening and reading the file contents and
+extracting `source_text` and `search_term`.
 
 
 #### content formatter
 `TextContentFormatter` class which is derived from `ContentFormatter` is
-the abstraction for formatting and filtering out the words from the `source_text`.
+the abstraction for formatting and filtering out the words from the `source_text`
+and gives the `formatted_text`.
 It ensures the assumptions are met before formatting and ensures exactly three words
 are present there in each line of the `source_text`.
 
 
 #### pattern matcher
-The pattern matcher module takes care of the
-pattern matching and prints matching line in the expected format and order.
+The pattern matcher module checks if the `formatted_text` contains the `search_term`
+and prints matching line in the expected format and order.
 
 #### Tests
 The tests are organised in `./tests/` directory. You can run them directly using pytest or use `make test` to run them.
 Ensure that the project environment and prerequisites are ready by
-running the command `make install` and activate the poetry shell using `make activate`.
+running the command `make dev_install` and activate the poetry shell using `make activate`.
+
+*Note: The above dev installation will work only if you initialise the directory as a git repo.*
 
 #### Code quality
 Static code quality is ensured using
-flake8, black, mypy etc via pre-commit hooks.
+flake8, black, mypy, etc via [pre-commit](https://pre-commit.com/).
 
 
 ### How to install the solution package?

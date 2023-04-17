@@ -1,5 +1,6 @@
 """Initialise file parser."""
 import logging
+import os
 from abc import ABC, abstractmethod
 from pathlib import Path
 
@@ -20,14 +21,29 @@ class FileParser(ABC):
         self._validate_path()
 
     def _validate_path(self) -> None:
-        """Check if the path given is valid."""
+        """Check if the path given is valid.
+
+        Raises:
+            IsADirectoryError
+            FileNotFoundError
+            PermissionError
+        """
+        if self.file_path.is_dir():
+            error = f"'{self.file_path}' is a directory! " f"Expecting a file."
+            raise IsADirectoryError(error)
         if self.file_path.is_file():
             logger.debug(f"File '{self.file_path}' is a valid file.")
-            return
         else:
             error = f"Invalid path! File '{self.file_path}' doesn't exist!"
             logger.error(error)
             raise FileNotFoundError(error)
+        if not os.access(self.file_path, os.R_OK):
+            error = (
+                f"File '{self.file_path}' has no read permission! "
+                f"Please provide read access."
+            )
+            logger.error(error)
+            raise PermissionError(error)
 
     @abstractmethod
     def read_and_parse(self) -> None:

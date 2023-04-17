@@ -38,7 +38,7 @@ def get_matching_lines(source_text: List[str], search_term: str) -> List[int]:
         source_text: input text formatted
         search_term: search term
     Returns:
-        object:
+        object: list of indices of matching lines
     """
     result_idx = []
     for idx, text in enumerate(source_text):
