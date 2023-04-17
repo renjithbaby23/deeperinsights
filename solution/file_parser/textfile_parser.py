@@ -24,11 +24,18 @@ class TextFileParser(FileParser):
     def _check_sanity(self, source_text):
         """Check the file contents for sanity."""
         if len(source_text) == 0:
-            error = f"Empty file - {self.file_path}"
+            error = (
+                f"Empty file - {self.file_path}! "
+                f"Please provide valid file."
+            )
             logger.error(error)
             raise ValueError(error)
         elif len(source_text) == 1:
-            error = f"No content found - {self.file_path}"
+            error = (
+                f"File with only one line - {self.file_path}!"
+                f"Expecting at least one line for source_text "
+                f"and another line for search term."
+            )
             logger.error(error)
             raise ValueError(error)
 

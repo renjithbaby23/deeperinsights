@@ -35,7 +35,10 @@ class TextContentFormatter(ContentFormatter):
         ):
             logger.debug(f"Source text is valid with length {len(input_data)}")
         else:
-            error = "Source data received is not list of strings!"
+            error = (
+                "Source data received is invalid. "
+                "Expecting list of strings!"
+            )
             logger.error(error)
             raise ValueError(error)
 

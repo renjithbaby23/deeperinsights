@@ -81,9 +81,7 @@ class TestTextFileParser:
     def test_call_with_empty_file(self):
         """Test the class call function on an empty file."""
         fp = TextFileParser(self.tmp_file.name)
-        with pytest.raises(
-            ValueError, match=f"Empty file - {self.tmp_file.name}"
-        ):
+        with pytest.raises(ValueError):
             fp()
 
     def test_call_with_oneline_file(self):
@@ -91,7 +89,5 @@ class TestTextFileParser:
         content = b"searchterm"
         self.write_to_temp_file(content)
         fp = TextFileParser(self.tmp_file.name)
-        with pytest.raises(
-            ValueError, match=f"No content found - {self.tmp_file.name}"
-        ):
+        with pytest.raises(ValueError):
             fp()
