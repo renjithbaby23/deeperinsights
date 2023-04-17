@@ -39,6 +39,15 @@ are present there in each line of the `source_text`.
 The pattern matcher module takes care of the
 pattern matching and prints matching line in the expected format and order.
 
+#### Tests
+The tests are organised in `./tests/` directory. You can run them directly using pytest or use `make test` to run them.
+Ensure that the project environment and prerequisites are ready by
+running the command `make install` and activate the poetry shell using `make activate`.
+
+#### Code quality
+Static code quality is ensured using
+flake8, black, mypy etc via pre-commit hooks.
+
 
 ### How to install the solution package?
 1. Requirements:
