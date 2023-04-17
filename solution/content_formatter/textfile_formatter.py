@@ -28,16 +28,24 @@ class TextContentFormatter(ContentFormatter):
         )
         self.word_length = word_length
 
-    @staticmethod
-    def _validate_input_data(input_data: List[str]) -> None:
+    def _validate_input_data(self, input_data: List[str]) -> None:
         """Check if the given data is valid."""
         if isinstance(input_data, list) and all(
             isinstance(item, str) for item in input_data
         ):
             logger.debug(f"Source text is valid with length {len(input_data)}")
-            return
         else:
             error = "Source data received is not list of strings!"
+            logger.error(error)
+            raise ValueError(error)
+
+        # check if the line meets minimum word condition
+        if any(len(item) < (self.word_length * 2 - 1) for item in input_data):
+            error = (
+                f"Expecting minimum {self.word_length} words "
+                f"in each line. But input file has entries that "
+                f"doesn't meet the condition!"
+            )
             logger.error(error)
             raise ValueError(error)
 

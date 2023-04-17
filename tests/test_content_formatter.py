@@ -47,8 +47,17 @@ class TestTextContentFormatter:
         [["123Sample*7567_test123."], [" this 12@is34  123another 'test_' "]],
     )
     def test_format_with_invalid_number_of_words(self, formatter, input_data):
-        """Test with invalid data types."""
+        """Test with invalid number of words in each line."""
         with pytest.raises(AssertionError):
+            formatter.format(input_data)
+
+    @pytest.mark.parametrize(
+        "input_data",
+        [["123"], ["abc"], ["a bc"], ["a b "], ["abc3"]],
+    )
+    def test_format_with_invalid_number_of_chars(self, formatter, input_data):
+        """Test with invalid number of chars in each line."""
+        with pytest.raises(ValueError):
             formatter.format(input_data)
 
     def test_format_with_invalid_data_items(self, formatter):

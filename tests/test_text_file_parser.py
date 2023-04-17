@@ -28,12 +28,12 @@ class TestTextFileParser:
         "content, expected_result",
         [
             (
-                b"Sample123Entry   _here212!\n\nsearchterm",
+                b"Sample123Entry   _here212!\nsearchterm",
                 (["Sample123Entry   _here212!"], "searchterm"),
             ),
             (
                 b"Sample123Entry_here212!\n"
-                b"Another123Entry   _here212!\n\nsearchterm",
+                b"Another123Entry   _here212!\nsearchterm",
                 (
                     [
                         "Sample123Entry_here212!",
@@ -57,12 +57,12 @@ class TestTextFileParser:
         "content, expected_result",
         [
             (
-                b"Sample123Entry   _here212!\n\nsearchterm",
+                b"Sample123Entry   _here212!\nsearchterm",
                 (["Sample123Entry   _here212!"], "searchterm"),
             ),
             (
                 b"Sample123Entry_here212!\n"
-                b"Another123Entry   _here212!\n\nsearchterm",
+                b"Another123Entry   _here212!\nsearchterm",
                 (
                     ["Sample123Entry_here212!", "Another123Entry   _here212!"],
                     "searchterm",

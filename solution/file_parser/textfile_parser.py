@@ -36,9 +36,7 @@ class TextFileParser(FileParser):
         """Implementation of read and parse."""
         with open(self.file_path, "r") as file:
             source_text = file.readlines()
-            source_text = [
-                line.strip() for line in source_text if line.strip() != ""
-            ]
+            source_text = [line.strip() for line in source_text]
 
         self._check_sanity(source_text)
 

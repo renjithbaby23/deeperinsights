@@ -1,4 +1,4 @@
-"""Main entry point for finding match."""
+"""Main entry point for solution."""
 
 import argparse
 import logging
